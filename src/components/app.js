@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Menu from './menu.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/app.css';
 
@@ -8,11 +9,11 @@ export default class App extends Component{
     counter2: 0,
     counter3: 0,
     degCounter: 0,
-    red: 240,
-    green: 150,
-    blue: 150,
-    roof: 240,
-    floor: 150,
+    red: 150,
+    green: 100,
+    blue: 100,
+    roof: 150,
+    floor: 100,
     currentTime: 0
   }
 
@@ -39,7 +40,7 @@ export default class App extends Component{
   }
 
   getColor() {
-    
+
     let c1 = this.state.counter1;
     let c2 = this.state.counter2;
     let c3 = this.state.counter3;
@@ -56,6 +57,7 @@ export default class App extends Component{
     else if (r == floor && g > floor && b == roof && c1 > 0) { c1--; g-- }
     else if (r < roof && g == floor && b == roof && c2 > 0) { c2--; r++ }
     else if (r == roof && g == floor && b > floor && c3 > 0) { c3--; b-- }
+    if (dG > 360) dG = 0;
     dG+=1;
 
     let colors = {
@@ -105,9 +107,10 @@ export default class App extends Component{
 
   render(){
     return(
-      <div className='clock' style={{backgroundImage: `linear-gradient(${this.state.degCounter}deg, ${this.state.colors.c14}, ${this.state.colors.c07}, ${this.state.colors.c15})`}}>
+      <div className='board' style={{backgroundImage: `linear-gradient(${45}deg, ${this.state.colors.c08}, ${this.state.colors.c17}, ${this.state.colors.c07})`}}>
         <h1>PULSAR CLOCK</h1>
         <p>{this.state.currentTime}</p>
+        <Menu />
       </div>
     )
   }
